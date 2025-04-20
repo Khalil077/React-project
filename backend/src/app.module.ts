@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectModule } from './project/project.module';
+import { TaskModule } from './project/task/task.module';
 
 @Module({
    imports: [ TypeOrmModule.forRoot({
@@ -14,8 +15,8 @@ import { ProjectModule } from './project/project.module';
     database: 'BD-Projects', 
     synchronize: false, 
     logging: true,
-    autoLoadEntities: true
-  }), ProjectModule,],
+        autoLoadEntities: true
+  }), ProjectModule,TaskModule],
   controllers: [AppController],
   providers: [AppService],
 })

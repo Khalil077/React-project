@@ -3,12 +3,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ProjectEntity } from './entities/project.entity';
 import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
+import { TaskEntity } from './task/entities/task.entity';
 
 @Injectable()
 export class ProjectService {
     constructor(
         @InjectRepository(ProjectEntity) 
         private ProjectRep: Repository<ProjectEntity>, 
+        @InjectRepository(TaskEntity) 
+        private TaskRep: Repository<TaskEntity>, 
+
       ) {}
 
     create(project): Promise<ProjectEntity> { 
@@ -27,13 +31,18 @@ export class ProjectService {
     }
 
     async softdelete(id: string) {
+      await this.TaskRep
+    .createQueryBuilder()
+    .softDelete()
+    .where("projectId = :id", { id })
+    .execute(); //softdelete does not support cascade in entity edheka aleh lezmna nzido commande hedhy
     return await this.ProjectRep.softDelete( id );
     
  
     }
 
     async updateproject(project,id) { 
-        const objectId = new ObjectId(id);
+      
         let b= await this.ProjectRep.preload(
            { id:id ,
               ...project

@@ -19,17 +19,17 @@ export class ProjectController {
         return await this.ProjectServ.findall()
     }
     @Get('findbyid/:id')
-    async findbyid(@Param('id') id) { 
+    async findbyid(@Param('id',ParseIntPipe) id) { 
         return this.ProjectServ.findbyid(id)
 
     }
     @Put('update/:id')
-    modifierproject(@Body() body,@Param('id') id ) {
+    modifierproject(@Body() body,@Param('id',ParseIntPipe) id ) {
         return this.ProjectServ.updateproject(body ,id)
 
     }
     @Delete('delete/:id') 
-    deleteproject(@Param('id') id){
+    deleteproject(@Param('id',ParseIntPipe) id){
         return this.ProjectServ.softdelete(id)
         
      }

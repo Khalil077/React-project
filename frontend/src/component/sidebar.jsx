@@ -6,8 +6,9 @@ function Sidebar() {
   return (
     <div className={styles.sidebar}>
       <h2 >YOUR PROJECTS</h2>
-      <div> 
-        <button className="px-3 py-2 bg-stone-700 ">+ Add Project</button>
+      <div> <Link to="add">
+        <button className="px-3 py-2"> + Add Project</button>
+        </Link> 
       </div>
  
     </div>

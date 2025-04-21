@@ -1,0 +1,30 @@
+.c1  { 
+   width:66.666667%; 
+   margin-top:6rem ;
+
+}
+.c1 img   {
+    width:4rem;
+    height:4rem;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain
+}
+.c1 h2 { 
+    color:  rgb(250 250 249);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.c1 p { 
+    color :rgb(168 162 158)
+}
+.button{
+    background-color: rgb(68 64 60 );
+    border-radius: .375rem;
+    color :rgb(168 162 158);
+    border: 0px solid transparent;
+  
+}
+.button:hover { 
+    color :white !important
+}

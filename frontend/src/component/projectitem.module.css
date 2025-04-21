@@ -1,0 +1,16 @@
+li .button {
+    width:100%;
+    text-align: left;
+    margin-top:-100px !important;
+    border-radius: .125rem;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+    padding-top: .25rem !important;
+    padding-bottom: .25rem !important;
+    color: rgb(168 162 158) ;
+    background-color: rgb(28 25 23 ) 
+}
+li { 
+    margin-top: 1rem !important;
+ 
+}

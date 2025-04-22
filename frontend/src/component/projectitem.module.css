@@ -12,5 +12,6 @@ li .button {
 }
 li { 
     margin-top: 1rem !important;
+    margin-left :0 px !important;
  
 }

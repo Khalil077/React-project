@@ -14,7 +14,7 @@ import { TaskModule } from './project/task/task.module';
     password: "",
     database: 'BD-Projects', 
     synchronize: false, 
-    logging: true,
+    logging: false,
         autoLoadEntities: true
   }), ProjectModule,TaskModule],
   controllers: [AppController],

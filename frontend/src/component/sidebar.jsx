@@ -1,9 +1,8 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./sidebar.module.css";
-import Allprojects from "../pages/allprojects";
-
-function Sidebar() {
+import Projectlist from "./projectlist";
+function Sidebar({ projects })  {
   return (
     <div className={styles.sidebar}>
       <h2 >YOUR PROJECTS</h2>
@@ -12,7 +11,8 @@ function Sidebar() {
         </Link> 
      
       </div>
-      <Allprojects> </Allprojects>
+
+      <Projectlist projects={projects}> </Projectlist>
     </div>
   );
 }

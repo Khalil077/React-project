@@ -1,7 +1,7 @@
 import Projectform from "../component/projectform";
 
- function Addproject() { 
-    return    ( <Projectform></Projectform> )
+function Addproject({ onProjectAdded  }) {                              
+  return <Projectform onProjectAdded={onProjectAdded } />;
+}
 
- }
- export default Addproject;
+export default Addproject

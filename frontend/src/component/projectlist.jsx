@@ -1,10 +1,10 @@
 import Projectitem from "./projectitem";
-
+import styles from "./projectlist.module.css"
 
 function Projectlist(props) { 
     return (
     
-        <ol className='list'>
+        <ol className={styles.list}>
             <div className="row">
                 {props.projects.map((element) => {
                

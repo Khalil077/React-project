@@ -15,6 +15,7 @@ import { TaskEntity } from '../task/entities/task.entity';
    description: string;
  
    @Column()
+   
    date: Date;
    @OneToMany(() => TaskEntity, (task) => task.project, {
     onDelete: 'CASCADE',

@@ -10,6 +10,7 @@
     background-color: rgb(28 25 23 );
     border-top-right-radius: .75rem;
     border-bottom-right-radius: .75rem;
+    overflow-y: auto;
   }
   .sidebar h2   { 
     font-size: 1.25rem;

@@ -1,12 +1,13 @@
 import { Body, Controller, Delete, Get, InternalServerErrorException, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { ProjectService } from './project.service';
+import { CreateProjectDto } from './dto/create-project.dto';
 
 @Controller('project')
 export class ProjectController {
     constructor(private ProjectServ:ProjectService){}
 
     @Post('add')
-    async create(@Body() body){
+    async create(@Body() body : CreateProjectDto){
         try {
             return await this.ProjectServ.create(body);
         } catch (error) {

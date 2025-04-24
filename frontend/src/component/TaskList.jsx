@@ -2,9 +2,9 @@ import styles from './Tasklist.module.css'
 
 const Task = ({ task }) => {
     return (
-      <li >
+      <li className={`${styles.task}`}>
         {task.id}
-     
+        <button className={`${styles.clear}` }> Clear</button>
       </li>
     );
   };

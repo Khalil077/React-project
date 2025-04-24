@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { ObjectId } from 'mongodb';
 import { TaskEntity } from './task/entities/task.entity';
 
+
 @Injectable()
 export class ProjectService {
     constructor(
@@ -30,13 +31,15 @@ export class ProjectService {
         return this.ProjectRep.findOne({ where: { id: id } });
     }
 
-    async softdelete(id: string) {
+    async softremove(id) {
       await this.TaskRep
     .createQueryBuilder()
     .softDelete()
     .where("projectId = :id", { id })
     .execute(); //softdelete does not support cascade in entity edheka aleh lezmna nzido commande hedhy
-    return await this.ProjectRep.softDelete( id );
+    let project= await this.findbyid(id)
+    if (project )
+    return await this.ProjectRep.softRemove( project );
     
  
     }

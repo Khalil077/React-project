@@ -21,6 +21,9 @@ li {
     padding-left:1.5rem ;
     padding-right:1.5rem;
 }
+.cancel:hover { 
+    color:black 
+}
 .save { 
     color:rgb(250 250 249 );    
     border:0px solid none;
@@ -29,9 +32,7 @@ li {
     padding-left:1.5rem ;
     padding-right:1.5rem;
 }
-.cancel:hover { 
-    color:black 
-}
+
 .save:hover {
     color:black
 }

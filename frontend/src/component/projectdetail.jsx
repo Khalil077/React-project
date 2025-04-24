@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from './projectdetail.module.css'
 import TaskList from "./TaskList";
-function Projectdetail() {
+function Projectdetail({ handleProjectDeleted }) {  // Correct prop name
     const { id } = useParams();  
     const [project, setProject] = useState(null);
     function formatDate(dateString) {
@@ -22,6 +22,29 @@ function Projectdetail() {
             });
     }, [id] //useeffect  mayekhdem kn ki yetbadl el id 
     );
+
+    //delete function of projects : 
+    const navigate = useNavigate(); 
+    const handleDelete = () => {
+        fetch(`http://localhost:3000/project/delete/${id}`, {
+            method: "DELETE",
+        })
+            .then((res) => {
+                if (res.ok) {
+                    
+                    handleProjectDeleted(id); 
+                    navigate('/home');
+
+
+                } else {
+                    alert('Error deleting the project.');
+                }
+            })
+            .catch((err) => {
+                console.error('Error deleting project:', err);
+                alert('Error deleting the project.');
+            });
+    };
     if(project) {
         const formattedDate = formatDate(project.date);
         return ( 
@@ -29,7 +52,7 @@ function Projectdetail() {
                 <header className={`pb-4 ${styles.header}`}>
                     <div className='d-flex '>
                         <h1> {project.title} </h1>
-                        <button className={`px-4 py-2 ${styles.button}`}> Delete</button>
+                        <button className={`px-4 py-2 ${styles.button}`} onClick={handleDelete} > Delete</button>
                     </div>
                     <p className={`mb-4 ${styles.date}`}> {formattedDate}</p>
                     <p className={`mb-4 ${styles.title}`}>  {project.title} </p>
@@ -45,9 +68,9 @@ function Projectdetail() {
                     </div>
                     {project.ListeTasks.length===0 ?(<p className="my-3">
                     No Tasks
-                    </p>) : null}
+                    </p>) :<TaskList tasks={project.ListeTasks} />       
+                    }
                     {console.log(project.ListeTasks)}
-                    <TaskList tasks={project.ListeTasks} />       
                 </div>
     
             </div>

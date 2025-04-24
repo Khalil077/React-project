@@ -31,7 +31,7 @@ export class ProjectController {
     }
     @Delete('delete/:id') 
     deleteproject(@Param('id',ParseIntPipe) id){
-        return this.ProjectServ.softdelete(id)
+        return this.ProjectServ.softremove(id)
         
      }
     

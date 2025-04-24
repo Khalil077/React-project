@@ -16,13 +16,19 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
+
 
   const handleProjectAdded = (newProject) => {
     setTabProjects((prevProjects) => [...prevProjects, newProject]); 
   };
+  const handleProjectDeleted = (projectId) => {
+    setTabProjects((prevProjects) => prevProjects.filter(project => project.id !== projectId));
+    fetchProjects();
+  };
+  
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   return (
     <div className="d-flex first">
@@ -34,8 +40,8 @@ function App() {
         
 
         <Route path="/add" element={<Addproject onProjectAdded={handleProjectAdded} />} />
-        <Route path="/Projectdetail/:id" element={<Projectdetail />} />
-      </Routes>
+        <Route path="/Projectdetail/:id" element={<Projectdetail handleProjectDeleted={handleProjectDeleted} />} />
+        </Routes>
   
     
     </div>

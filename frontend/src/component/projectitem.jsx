@@ -1,11 +1,23 @@
-import styles from './projectitem.module.css'
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import styles from './projectitem.module.css';
 
-function Projectitem(props) { 
-    return      <Link to={`/projectdetail/${props.oneproject.id}`}>
-    <li className={styles.li}>
-        <button className={`py-1  px-2 button ${styles.button}`}> {props.oneproject.title} </button>
-    </li>
-    </Link>
+function Projectitem(props) {
+    return (
+        <li className={styles.li}>
+          <NavLink  to={`/projectdetail/${props.oneproject.id}`}>
+{
+    ({isActive}) => {
+        console.log(isActive);
+        
+        return   <button className={`py-1 px-2 ${styles.button} ${isActive ? styles.activeButton : null}`}>
+        {props.oneproject.title}
+    </button>
+    }
 }
+</NavLink>
+        </li>
+    );
+}
+
 export default Projectitem;

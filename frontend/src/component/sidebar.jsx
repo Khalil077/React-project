@@ -11,8 +11,9 @@ function Sidebar({ projects })  {
         </Link> 
      
       </div>
-
+     
       <Projectlist projects={projects}> </Projectlist>
+   
     </div>
   );
 }

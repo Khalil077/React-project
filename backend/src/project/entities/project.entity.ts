@@ -19,6 +19,7 @@ import { TaskEntity } from '../task/entities/task.entity';
    date: Date;
    @OneToMany(() => TaskEntity, (task) => task.project, {
     onDelete: 'CASCADE',
+    eager:true,
     cascade: true,
    } )
    ListeTasks: TaskEntity[]; }

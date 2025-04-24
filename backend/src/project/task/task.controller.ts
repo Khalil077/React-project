@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDTO } from '../dto/create-task.dto';
 
@@ -15,6 +15,12 @@ export class TaskController {
     findalltasks() { 
       return this.TaskSer.findall()
     }
+  @Delete('SoftRemove/:projectId/:taskId') 
+  async delete(    @Param('projectId') projectId ,@Param('taskId') taskId) { 
+    return await this.TaskSer.softdelete(projectId,taskId)
+
+
+  }
   
 
 

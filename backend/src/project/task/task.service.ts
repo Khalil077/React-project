@@ -25,7 +25,24 @@ export class TaskService {
       async findall() {
         return await this.TaskRep.find()
       }
+      async softdelete(ProjectId , TaskId) { 
+          const project = await this.ProjecServ.findbyid( ProjectId  );
+          if (!project) {
+            throw new Error('Project not found');
+          }
+      
+          const task = await this.TaskRep.findOne({ where: { id: TaskId, project: { id: ProjectId }  } });
+          if (!task) {
+            throw new Error('Task not found');
+          }
+          await this.TaskRep.softRemove(task);
+          return task; 
         }
+      }
+
+      
+
+        
        
   
 

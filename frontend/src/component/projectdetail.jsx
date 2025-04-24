@@ -45,6 +45,9 @@ function Projectdetail({ handleProjectDeleted }) {  // Correct prop name
                 alert('Error deleting the project.');
             });
     };
+
+    
+
     if(project) {
         const formattedDate = formatDate(project.date);
         return ( 
@@ -68,7 +71,7 @@ function Projectdetail({ handleProjectDeleted }) {  // Correct prop name
                     </div>
                     {project.ListeTasks.length===0 ?(<p className="my-3">
                     No Tasks
-                    </p>) :<TaskList tasks={project.ListeTasks} />       
+                    </p>) :<TaskList tasks={project.ListeTasks} projectId={id}  setProject={setProject}/>       
                     }
                     {console.log(project.ListeTasks)}
                 </div>

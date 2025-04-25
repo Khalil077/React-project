@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from './projectdetail.module.css'
 import TaskList from "./TaskList";
 function Projectdetail({ handleProjectDeleted }) {  // Correct prop name
     const { id } = useParams();  
     const [project, setProject] = useState(null);
-    function formatDate(dateString) {
-        const date = new Date(dateString); 
-        return date.toLocaleDateString();  
-      }
+    const [taskDescription, setTaskDescription] = useState('');
+function formatDate(dateString) {
+    const date = new Date(dateString); 
+    return date.toLocaleDateString();  
+                                }
     
     useEffect(() => {
         fetch(`http://localhost:3000/project/findbyid/${id}`)
@@ -22,6 +23,8 @@ function Projectdetail({ handleProjectDeleted }) {  // Correct prop name
             });
     }, [id] //useeffect  mayekhdem kn ki yetbadl el id 
     );
+
+    
 
     //delete function of projects : 
     const navigate = useNavigate(); 
@@ -45,7 +48,34 @@ function Projectdetail({ handleProjectDeleted }) {  // Correct prop name
                 alert('Error deleting the project.');
             });
     };
-
+    //add task function 
+    const handletaskadd = () => {
+        if (!taskDescription.trim()) { 
+            alert('Please enter a task description.'); }
+        else  { 
+        const newTask = {
+            description: taskDescription,
+            
+        };    
+        fetch(`http://localhost:3000/task/add/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newTask)
+        })
+        .then((res) => res.json())
+        .then((data) => { //ken task tzed naamel update b setproject bch todhher fl front mnghir refresh 
+            setProject((prevProject) => ({
+                ...prevProject,
+                ListeTasks: [...prevProject.ListeTasks, data],
+            }));
+        })
+        .catch((err) => {
+            console.error('Error adding task:', err);
+            alert('Error adding the task.');
+        });
+    }; }
     
 
     if(project) {
@@ -66,8 +96,8 @@ function Projectdetail({ handleProjectDeleted }) {  // Correct prop name
                         Tasks
                     </h2>
                     <div className={`d-flex  ${styles.TasksContainer}`}>
-                    <input type="text" className={`p-1  ${styles.input}` }/>
-                    <button className={`px-4 py-2 ${styles.button}`}> Add</button>
+                    <input type="text" className={`p-1  ${styles.input}` }     onChange={(e) => setTaskDescription(e.target.value)}  />
+                    <button className={`px-4 py-2 ${styles.button}`}  onClick={handletaskadd}> Add</button>
                     </div>
                     {project.ListeTasks.length===0 ?(<p className="my-3">
                     No Tasks
